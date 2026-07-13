@@ -1,0 +1,809 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#1f2c43">
+  <meta name="description" content="Guía postboda para descubrir Delhi, Agra, Jaipur y Rishikesh en diciembre de 2026.">
+  <title>Norte de India · Guía para nuestros invitados</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,600;6..96,700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --indigo: #1f2c43;
+      --indigo-soft: #2b3952;
+      --rose: #d66f74;
+      --saffron: #c85f2d;
+      --marigold: #e0a126;
+      --teal: #176874;
+      --river: #4b8795;
+      --paper: #fbf7ef;
+      --ivory: #f6efe3;
+      --stone: #e9ddca;
+      --ink: #26363b;
+      --muted: #6d6a64;
+      --white: #fffdf8;
+      --display: "Bodoni Moda", Didot, "Bodoni 72", Georgia, serif;
+      --sans: Inter, Arial, Helvetica, sans-serif;
+      --shadow: 0 24px 70px rgba(31, 44, 67, .14);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.55;
+      text-rendering: optimizeLegibility;
+    }
+    img { display: block; width: 100%; }
+    a { color: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    :focus-visible { outline: 3px solid var(--marigold); outline-offset: 4px; }
+
+    .skip-link {
+      position: fixed;
+      left: 18px;
+      top: -80px;
+      z-index: 100;
+      padding: 10px 14px;
+      background: var(--white);
+      color: var(--indigo);
+      border-radius: 8px;
+      font-weight: 700;
+    }
+    .skip-link:focus { top: 18px; }
+    .reading-progress {
+      position: fixed;
+      inset: 0 auto auto 0;
+      z-index: 99;
+      width: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--marigold), var(--rose));
+    }
+
+    .eyebrow {
+      margin: 0 0 14px;
+      color: var(--saffron);
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .18em;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+    .eyebrow.light { color: var(--marigold); }
+    .display {
+      margin: 0;
+      color: var(--indigo);
+      font-family: var(--display);
+      font-weight: 600;
+      letter-spacing: -.035em;
+      line-height: .98;
+    }
+    .lede {
+      max-width: 760px;
+      margin: 20px 0 0;
+      color: var(--muted);
+      font-size: clamp(1rem, 1.35vw, 1.16rem);
+    }
+    .section-shell {
+      width: min(1180px, calc(100% - 48px));
+      margin-inline: auto;
+    }
+    .section-space { padding-block: clamp(76px, 10vw, 132px); }
+    .section-head { margin-bottom: 42px; }
+    .section-head .display { font-size: clamp(2.7rem, 6vw, 5.1rem); }
+
+    /* The four-city image mosaic is the visual signature. */
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      overflow: hidden;
+      background: var(--indigo);
+      isolation: isolate;
+    }
+    .hero-mosaic {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+    }
+    .hero-mosaic figure {
+      position: relative;
+      min-width: 0;
+      margin: 0;
+      overflow: hidden;
+    }
+    .hero-mosaic figure::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border: 1px solid rgba(255, 253, 248, .12);
+    }
+    .hero-mosaic img {
+      height: 100%;
+      object-fit: cover;
+      filter: saturate(.9) contrast(1.03);
+    }
+    .hero-mosaic .delhi img { object-position: 50% 58%; }
+    .hero-mosaic .agra img { object-position: 50% 58%; }
+    .hero-mosaic .jaipur img { object-position: 50% 64%; }
+    .hero-mosaic .rishikesh img { object-position: 50% 62%; }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background:
+        radial-gradient(circle at 50% 47%, transparent 0 14%, rgba(15, 23, 38, .16) 50%),
+        linear-gradient(180deg, rgba(12, 19, 31, .1), rgba(12, 19, 31, .58));
+      pointer-events: none;
+    }
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      min-height: 100svh;
+      place-items: center;
+      padding: 68px 24px;
+    }
+    .hero-panel {
+      width: min(720px, 92vw);
+      padding: clamp(34px, 6vw, 72px);
+      border: 1px solid rgba(255, 255, 255, .16);
+      background: rgba(31, 44, 67, .91);
+      box-shadow: var(--shadow);
+      color: var(--white);
+      text-align: center;
+      backdrop-filter: blur(9px);
+    }
+    .hero-topline {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 30px;
+    }
+    .hero-topline .eyebrow { margin: 0; }
+    .date-chip {
+      flex: none;
+      padding: 8px 12px;
+      border: 1px solid rgba(255, 255, 255, .28);
+      border-radius: 999px;
+      color: var(--white);
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+    }
+    .hero h1 {
+      margin: 0;
+      font-family: var(--display);
+      font-size: clamp(4.15rem, 10vw, 7.7rem);
+      font-weight: 600;
+      letter-spacing: -.055em;
+      line-height: .82;
+    }
+    .hero h1 span { display: block; }
+    .hero-copy {
+      max-width: 560px;
+      margin: 28px auto 0;
+      color: rgba(255, 253, 248, .82);
+      font-size: clamp(.98rem, 1.4vw, 1.12rem);
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      margin-top: 30px;
+    }
+    .primary-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 12px 18px;
+      background: var(--marigold);
+      color: var(--indigo);
+      font-size: .83rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+    .city-line {
+      color: rgba(255, 253, 248, .64);
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    .site-nav {
+      position: sticky;
+      top: 14px;
+      z-index: 30;
+      width: min(900px, calc(100% - 30px));
+      margin: 14px auto -72px;
+      padding: 9px;
+      border: 1px solid rgba(31, 44, 67, .09);
+      border-radius: 999px;
+      background: rgba(255, 253, 248, .9);
+      box-shadow: 0 16px 50px rgba(31, 44, 67, .12);
+      backdrop-filter: blur(16px);
+    }
+    .site-nav ul {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .site-nav a {
+      display: block;
+      padding: 9px 13px;
+      border-radius: 999px;
+      color: var(--indigo);
+      font-size: .78rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .site-nav a:hover { background: var(--ivory); }
+
+    .routes { padding-top: 150px; }
+    .route-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+    .route-card {
+      position: relative;
+      display: grid;
+      grid-template-columns: 158px 1fr;
+      min-height: 190px;
+      overflow: hidden;
+      border: 1px solid var(--stone);
+      border-radius: 18px;
+      background: var(--white);
+      text-decoration: none;
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+    .route-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+    .route-card img { height: 100%; object-fit: cover; }
+    .route-card .route-copy { display: flex; flex-direction: column; padding: 24px; }
+    .route-card h3 { margin: 0; color: var(--indigo); font-size: 1.06rem; letter-spacing: .02em; }
+    .route-card p { margin: 10px 0 0; color: var(--muted); font-size: .88rem; }
+    .route-card .duration {
+      align-self: flex-start;
+      margin-top: auto;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: var(--ivory);
+      color: var(--saffron);
+      font-size: .76rem;
+      font-weight: 700;
+    }
+    .route-card.featured { border-color: var(--indigo); background: var(--indigo); }
+    .route-card.featured h3, .route-card.featured p { color: var(--white); }
+    .route-card.featured p { color: rgba(255, 253, 248, .72); }
+    .route-card.featured .duration { background: var(--marigold); color: var(--indigo); }
+    .recommendation {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      padding: 6px 9px;
+      background: var(--rose);
+      color: var(--white);
+      font-size: .62rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+    .golden-rule {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      align-items: center;
+      gap: 18px;
+      margin-top: 22px;
+      padding: 22px 24px;
+      background: var(--marigold);
+      color: var(--indigo);
+    }
+    .golden-rule strong { font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; }
+    .golden-rule span { font-weight: 600; }
+
+    .destination-stack { display: grid; gap: 48px; padding-bottom: 120px; }
+    .destination {
+      --accent: var(--saffron);
+      display: grid;
+      grid-template-columns: minmax(0, .88fr) minmax(0, 1.12fr);
+      min-height: 780px;
+      overflow: hidden;
+      background: var(--white);
+      box-shadow: var(--shadow);
+    }
+    .destination[data-accent="rose"] { --accent: var(--rose); }
+    .destination[data-accent="teal"] { --accent: var(--teal); }
+    .destination.reverse { grid-template-columns: minmax(0, 1.12fr) minmax(0, .88fr); }
+    .destination.reverse .destination-visual { order: 2; }
+    .destination-visual { position: relative; min-height: 100%; overflow: hidden; background: var(--indigo); }
+    .destination-visual img { height: 100%; object-fit: cover; }
+    .destination-visual.delhi img { object-position: 50% 56%; }
+    .destination-visual.agra img { object-position: 50% 57%; }
+    .destination-visual.jaipur img { object-position: 50% 59%; }
+    .destination-visual.rishikesh img { object-position: 50% 56%; }
+    .destination-visual::after {
+      content: "";
+      position: absolute;
+      inset: 50% 0 0;
+      background: linear-gradient(180deg, transparent, rgba(18, 28, 43, .82));
+    }
+    .visual-label {
+      position: absolute;
+      inset: auto 34px 30px;
+      z-index: 2;
+      color: var(--white);
+    }
+    .visual-label .index { color: var(--marigold); font-size: .72rem; font-weight: 700; letter-spacing: .18em; }
+    .visual-label strong { display: block; margin-top: 8px; font-family: var(--display); font-size: clamp(3rem, 5vw, 5.2rem); font-weight: 600; line-height: .9; }
+    .visual-label em { display: block; margin-top: 10px; font-family: var(--display); font-size: 1.1rem; }
+    .destination-copy { position: relative; padding: clamp(42px, 6vw, 74px); overflow: hidden; }
+    .destination-copy::before {
+      content: attr(data-number);
+      position: absolute;
+      top: -46px;
+      right: -8px;
+      color: color-mix(in srgb, var(--accent) 8%, transparent);
+      font-family: var(--display);
+      font-size: 15rem;
+      line-height: 1;
+      pointer-events: none;
+    }
+    .chapter-row {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .chapter-row .eyebrow { margin: 0; color: var(--accent); }
+    .chapter-progress { display: flex; gap: 5px; }
+    .chapter-progress i { width: 8px; height: 5px; border-radius: 99px; background: var(--stone); }
+    .chapter-progress i.active { width: 22px; background: var(--accent); }
+    .destination-copy h2 { position: relative; margin: 22px 0 0; font-family: var(--display); font-size: clamp(3.4rem, 6vw, 5.4rem); font-weight: 600; letter-spacing: -.04em; line-height: .9; color: var(--indigo); }
+    .tagline { margin: 12px 0 0; color: var(--accent); font-family: var(--display); font-size: 1.28rem; font-style: italic; }
+    .destination-intro { max-width: 680px; margin: 24px 0 0; font-size: 1rem; }
+    .meta-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+    .meta-row span { padding: 8px 11px; border-radius: 999px; background: var(--ivory); color: var(--accent); font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+    .plan-title { margin: 34px 0 20px; color: var(--accent); font-size: .72rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
+    .timeline { margin: 0; padding: 0; list-style: none; }
+    .timeline li { position: relative; margin-left: 5px; padding: 0 0 20px 28px; border-left: 1px solid var(--stone); }
+    .timeline li:last-child { padding-bottom: 0; border-color: transparent; }
+    .timeline li::before { content: ""; position: absolute; top: 5px; left: -6px; width: 11px; height: 11px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px var(--white); }
+    .timeline time { display: block; color: var(--accent); font-size: .68rem; font-weight: 700; letter-spacing: .1em; }
+    .timeline strong { display: block; margin-top: 3px; color: var(--ink); font-size: .96rem; }
+    .timeline p { margin: 3px 0 0; color: var(--muted); font-size: .83rem; }
+    .note-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 30px; }
+    .note-card { padding: 19px; background: var(--ivory); }
+    .note-card.important { background: var(--accent); color: var(--white); }
+    .note-card h3 { margin: 0; color: var(--accent); font-size: .66rem; letter-spacing: .14em; text-transform: uppercase; }
+    .note-card.important h3 { color: var(--marigold); }
+    .note-card p { margin: 10px 0 0; color: var(--muted); font-size: .82rem; }
+    .note-card.important p { color: var(--white); font-weight: 600; }
+
+    .calendar {
+      padding-block: clamp(78px, 9vw, 120px);
+      background: var(--indigo);
+      color: var(--white);
+    }
+    .calendar .display { color: var(--white); font-size: clamp(2.8rem, 6vw, 5.2rem); }
+    .calendar .lede { color: rgba(255, 253, 248, .7); }
+    .calendar-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-top: 42px; }
+    .itinerary { padding: clamp(24px, 4vw, 38px); border: 1px solid rgba(255, 255, 255, .15); background: rgba(255, 255, 255, .055); }
+    .itinerary.featured { border-color: var(--rose); background: linear-gradient(145deg, rgba(214, 111, 116, .19), rgba(255, 255, 255, .04)); }
+    .itinerary-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 24px; }
+    .itinerary-head h3 { margin: 0; font-size: 1.08rem; }
+    .itinerary-head span { padding: 7px 10px; background: var(--marigold); color: var(--indigo); font-size: .72rem; font-weight: 700; }
+    .day-list { display: grid; gap: 0; margin: 0; padding: 0; list-style: none; }
+    .day-list li { display: grid; grid-template-columns: 60px 1fr; gap: 14px; padding: 14px 0; border-top: 1px solid rgba(255, 255, 255, .12); }
+    .day-list time { color: var(--marigold); font-size: .7rem; font-weight: 700; letter-spacing: .08em; }
+    .day-list p { margin: 0; color: rgba(255, 253, 248, .7); font-size: .84rem; }
+    .day-list strong { color: var(--white); }
+    .alternative { margin-top: 18px; padding: 18px 20px; border: 1px dashed rgba(224, 161, 38, .6); color: rgba(255, 253, 248, .78); font-size: .9rem; }
+    .alternative strong { color: var(--marigold); }
+
+    .practical-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+    .practical-card { padding: 22px; border-top: 5px solid var(--accent, var(--saffron)); background: var(--white); box-shadow: 0 10px 34px rgba(31, 44, 67, .07); }
+    .practical-card h3 { margin: 0 0 10px; color: var(--accent, var(--saffron)); font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; }
+    .practical-card p { margin: 0; color: var(--muted); font-size: .88rem; }
+    .emergency {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      align-items: center;
+      gap: 24px;
+      margin-top: 18px;
+      padding: 24px 28px;
+      background: var(--saffron);
+      color: var(--white);
+    }
+    .emergency strong { font-family: var(--display); font-size: 3rem; font-weight: 600; line-height: 1; }
+    .emergency p { margin: 0; font-size: .88rem; font-weight: 600; }
+
+    .booking { background: var(--ivory); }
+    .link-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .official-link { display: flex; align-items: center; gap: 14px; padding: 18px; border: 1px solid var(--stone); background: var(--white); text-decoration: none; transition: border-color .2s ease, transform .2s ease; }
+    .official-link:hover { transform: translateY(-2px); border-color: var(--saffron); }
+    .official-link i { width: 12px; height: 12px; flex: none; border-radius: 50%; background: var(--dot, var(--teal)); }
+    .official-link strong { display: block; color: var(--indigo); font-size: .86rem; }
+    .official-link small { display: block; margin-top: 2px; color: var(--muted); }
+    .packing { margin-top: 28px; padding: 24px; background: var(--white); }
+    .packing h3 { margin: 0 0 14px; color: var(--saffron); font-size: .7rem; letter-spacing: .16em; text-transform: uppercase; }
+    .chip-list { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
+    .chip-list li { padding: 8px 11px; border: 1px solid var(--stone); border-radius: 999px; background: var(--paper); font-size: .77rem; font-weight: 600; }
+    .credits { margin-top: 22px; color: var(--muted); font-size: .72rem; }
+    .credits summary { cursor: pointer; font-weight: 700; }
+    .credits p { max-width: 900px; }
+
+    .closing { padding: 76px 24px; background: var(--rose); color: var(--white); text-align: center; }
+    .closing strong { display: block; font-family: var(--display); font-size: clamp(2.7rem, 6vw, 5.6rem); font-weight: 600; line-height: .95; }
+    .closing p { margin: 18px auto 0; color: rgba(255, 253, 248, .84); font-size: 1.08rem; }
+    .closing small { display: block; margin-top: 30px; color: rgba(255, 253, 248, .58); font-size: .64rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; }
+
+    .reveal { opacity: 1; transform: none; }
+
+    @media (max-width: 900px) {
+      .site-nav { overflow-x: auto; border-radius: 18px; }
+      .site-nav ul { justify-content: flex-start; min-width: max-content; }
+      .route-card { grid-template-columns: 120px 1fr; }
+      .destination, .destination.reverse { grid-template-columns: 1fr; }
+      .destination.reverse .destination-visual { order: 0; }
+      .destination-visual { min-height: 580px; }
+      .destination-copy { padding: 44px 34px 50px; }
+      .destination-copy::before { font-size: 11rem; }
+      .calendar-grid { grid-template-columns: 1fr; }
+      .practical-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 620px) {
+      .section-shell { width: min(100% - 30px, 1180px); }
+      .section-space { padding-block: 74px; }
+      .hero-inner { align-items: end; padding: 54px 15px 32px; }
+      .hero-panel { padding: 28px 22px 30px; text-align: left; }
+      .hero-topline { margin-bottom: 22px; }
+      .hero h1 { font-size: clamp(3.75rem, 18vw, 5.4rem); }
+      .hero-copy { margin-top: 20px; }
+      .hero-actions { justify-content: flex-start; }
+      .city-line { display: none; }
+      .site-nav { top: 8px; margin-top: 8px; margin-bottom: -66px; }
+      .site-nav a { padding: 9px 11px; font-size: .72rem; }
+      .routes { padding-top: 128px; }
+      .route-grid { grid-template-columns: 1fr; }
+      .route-card { grid-template-columns: 104px 1fr; min-height: 166px; }
+      .route-card .route-copy { padding: 18px; }
+      .golden-rule { grid-template-columns: 1fr; gap: 8px; }
+      .destination-stack { gap: 28px; padding-bottom: 74px; }
+      .destination-visual { min-height: 500px; }
+      .destination-copy { padding: 36px 22px 42px; }
+      .destination-copy h2 { font-size: 3.65rem; }
+      .note-grid { grid-template-columns: 1fr; }
+      .practical-grid, .link-grid { grid-template-columns: 1fr; }
+      .calendar .section-shell { width: min(100% - 30px, 1180px); }
+      .day-list li { grid-template-columns: 54px 1fr; }
+      .emergency { grid-template-columns: 1fr; gap: 10px; }
+      .closing { padding-inline: 20px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+
+    @media print {
+      .reading-progress, .site-nav, .hero-actions { display: none !important; }
+      body { background: white; }
+      .hero { min-height: 100vh; break-after: page; }
+      .routes { padding-top: 70px; }
+      .destination, .itinerary, .practical-card, .booking { break-inside: avoid; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <div class="reading-progress" aria-hidden="true"></div>
+
+  <header class="hero" id="inicio">
+    <div class="hero-mosaic" aria-hidden="true">
+      <figure class="delhi"><img src="assets/delhi.webp" alt=""></figure>
+      <figure class="agra"><img src="assets/agra.webp" alt=""></figure>
+      <figure class="jaipur"><img src="assets/jaipur.webp" alt=""></figure>
+      <figure class="rishikesh"><img src="assets/rishikesh.webp" alt=""></figure>
+    </div>
+    <div class="hero-inner">
+      <div class="hero-panel">
+        <div class="hero-topline">
+          <p class="eyebrow light">Después de la boda</p>
+          <span class="date-chip">DIC 2026</span>
+        </div>
+        <h1><span>Norte</span><span>de India</span></h1>
+        <p class="hero-copy">Hemos reunido cuatro formas de seguir el viaje después de la boda. Elegid la que mejor encaje con vuestros días y dejad tiempo para descansar.</p>
+        <div class="hero-actions">
+          <a class="primary-link" href="#rutas">Ver las rutas ↓</a>
+          <span class="city-line">Delhi · Agra · Jaipur · Rishikesh</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <nav class="site-nav" aria-label="Navegación de la guía">
+    <ul>
+      <li><a href="#rutas">Rutas</a></li>
+      <li><a href="#delhi">Delhi</a></li>
+      <li><a href="#agra">Agra</a></li>
+      <li><a href="#jaipur">Jaipur</a></li>
+      <li><a href="#rishikesh">Rishikesh</a></li>
+      <li><a href="#calendario">Calendario</a></li>
+      <li><a href="#practico">Consejos</a></li>
+    </ul>
+  </nav>
+
+  <main id="contenido">
+    <section class="routes section-space" id="rutas">
+      <div class="section-shell">
+        <header class="section-head reveal">
+          <p class="eyebrow">Elegid vuestro ritmo</p>
+          <h2 class="display">Cuatro maneras<br>de seguir el viaje</h2>
+          <p class="lede">Mirad primero cuántos días tenéis antes del vuelo. En cualquier ruta, os recomendamos dormir la última noche en Delhi.</p>
+        </header>
+        <div class="route-grid">
+          <a class="route-card reveal" href="#delhi">
+            <img src="assets/delhi.webp" alt="Delhi ilustrada con India Gate, Qutub Minar y arquitectura mogol">
+            <div class="route-copy">
+              <h3>Delhi esencial</h3>
+              <p>Humayun · Old Delhi · India Gate · Qutub. Todo desde el mismo hotel.</p>
+              <span class="duration">2 o 3 días</span>
+            </div>
+          </a>
+          <a class="route-card reveal" href="#agra">
+            <img src="assets/agra.webp" alt="El Taj Mahal en una composición de inspiración patrimonial">
+            <div class="route-copy">
+              <h3>Delhi + Agra</h3>
+              <p>Con pocos días, una noche basta para ver el Taj sin pasar el viaje en carretera.</p>
+              <span class="duration">3 o 4 días</span>
+            </div>
+          </a>
+          <a class="route-card featured reveal" href="#calendario">
+            <span class="recommendation">La más completa</span>
+            <img src="assets/jaipur.webp" alt="Fachadas rosadas y palacios de Jaipur">
+            <div class="route-copy">
+              <h3>Triángulo Dorado</h3>
+              <p>La ruta clásica para una primera visita: Delhi · Agra · Jaipur · Delhi.</p>
+              <span class="duration">5 a 7 días</span>
+            </div>
+          </a>
+          <a class="route-card reveal" href="#rishikesh">
+            <img src="assets/rishikesh.webp" alt="El Ganges y los puentes de Rishikesh al atardecer">
+            <div class="route-copy">
+              <h3>Delhi + Rishikesh</h3>
+              <p>Para bajar el ritmo junto al Ganges, con yoga y tiempo libre.</p>
+              <span class="duration">4 a 6 días</span>
+            </div>
+          </a>
+        </div>
+        <div class="golden-rule reveal">
+          <strong>Regla de oro</strong>
+          <span>Dormid en Delhi la noche anterior al vuelo internacional.</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="destination-stack section-shell">
+      <article class="destination reveal" id="delhi">
+        <div class="destination-visual delhi">
+          <img src="assets/delhi.webp" alt="Collage artístico de Delhi con India Gate, Qutub Minar y la tumba de Humayun">
+          <div class="visual-label"><span class="index">01 / 04 · DELHI</span><strong>Delhi</strong><em>Empezad con calma</em></div>
+        </div>
+        <div class="destination-copy" data-number="01">
+          <div class="chapter-row"><p class="eyebrow">Ciudad 01 / 04</p><div class="chapter-progress" aria-hidden="true"><i class="active"></i><i></i><i></i><i></i></div></div>
+          <h2>Delhi</h2>
+          <p class="tagline">Empezad con calma</p>
+          <p class="destination-intro">En pocos kilómetros conviven tumbas mogoles, mercados y los grandes ejes de la capital. Empezad por los jardines y dejad Old Delhi para cuando hayáis descansado; con guía se disfruta mucho más.</p>
+          <div class="meta-row"><span>2 o 3 días</span><span>Ritmo flexible</span><span>Trayectos locales</span></div>
+          <h3 class="plan-title">Cómo repartir el tiempo</h3>
+          <ol class="timeline">
+            <li><time>09:00</time><strong>Humayun + Sunder Nursery</strong><p>La tumba de Humayun y sus jardines son una primera visita tranquila.</p></li>
+            <li><time>13:00</time><strong>Lodhi + almuerzo</strong><p>Dad un paseo corto y almorzad en un restaurante de confianza.</p></li>
+            <li><time>16:30</time><strong>India Gate</strong><p>Llegad con luz de tarde y recorred Kartavya Path.</p></li>
+            <li><time>DÍA 2</time><strong>Old Delhi con guía</strong><p>Jama Masjid, un paseo en rickshaw, bazares y una visita al gurudwara.</p></li>
+          </ol>
+          <div class="note-grid">
+            <div class="note-card"><h3>Si tenéis más tiempo</h3><p>Añadid Qutub Minar y Mehrauli, Dilli Haat o Gurudwara Bangla Sahib al atardecer.</p></div>
+            <div class="note-card important"><h3>Nota clave</h3><p>Para Old Delhi, reservad un guía y acordad el punto de encuentro. Conviene que el vehículo espere al final.</p></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="destination reverse reveal" id="agra">
+        <div class="destination-visual agra">
+          <img src="assets/agra.webp" alt="El Taj Mahal enmarcado por motivos arquitectónicos y tonos cálidos">
+          <div class="visual-label"><span class="index">02 / 04 · AGRA</span><strong>Agra</strong><em>El Taj sin prisas</em></div>
+        </div>
+        <div class="destination-copy" data-number="02">
+          <div class="chapter-row"><p class="eyebrow">Ciudad 02 / 04</p><div class="chapter-progress" aria-hidden="true"><i></i><i class="active"></i><i></i><i></i></div></div>
+          <h2>Agra</h2>
+          <p class="tagline">El Taj sin prisas</p>
+          <p class="destination-intro">Dormid una noche en Agra. Así podéis visitar el Taj temprano, ver Agra Fort y evitar ocho horas de carretera en un solo día.</p>
+          <div class="meta-row"><span>1 noche</span><span>Ritmo moderado</span><span>≈ 4 h desde Delhi</span></div>
+          <h3 class="plan-title">Un plan cómodo</h3>
+          <ol class="timeline">
+            <li><time>DÍA 1</time><strong>Salid después del desayuno</strong><p>En diciembre, es más cómodo conducir de día que antes del amanecer.</p></li>
+            <li><time>15:00</time><strong>Agra Fort</strong><p>Sus patios y salas ayudan a entender la vida de la corte mogola.</p></li>
+            <li><time>17:15</time><strong>Mehtab Bagh</strong><p>Id si el cielo está despejado; la vista depende mucho de la bruma.</p></li>
+            <li><time>DÍA 2</time><strong>Taj Mahal con guía acreditado</strong><p>Quedad con el guía antes de la apertura, entrad a primera hora y volved al hotel a desayunar.</p></li>
+          </ol>
+          <div class="note-grid">
+            <div class="note-card"><h3>Si tenéis más tiempo</h3><p>Añadid Itmad-ud-Daulah o Fatehpur Sikri. Para comer, elegid un restaurante de confianza con cocina mogola.</p></div>
+            <div class="note-card important"><h3>Antes de ir</h3><p>El Taj Mahal cierra los viernes. Reservad el 4 de diciembre de 2026 para Delhi.</p><p>No es obligatorio contratar guía para entrar, pero para nuestros invitados internacionales consideramos esencial reservar uno aprobado por el Gobierno. Pedid que muestre su acreditación con foto. <a href="https://desh.tourism.gov.in/tour-guides?userTypes=guide" target="_blank" rel="noopener">Buscad y reservad un guía verificado en DESH, el portal del Ministerio de Turismo ↗</a></p></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="destination reveal" id="jaipur" data-accent="rose">
+        <div class="destination-visual jaipur">
+          <img src="assets/jaipur.webp" alt="Hawa Mahal y arquitectura palaciega de Jaipur en tonos rosados">
+          <div class="visual-label"><span class="index">03 / 04 · JAIPUR</span><strong>Jaipur</strong><em>Dos noches en la Ciudad Rosa</em></div>
+        </div>
+        <div class="destination-copy" data-number="03">
+          <div class="chapter-row"><p class="eyebrow">Ciudad 03 / 04</p><div class="chapter-progress" aria-hidden="true"><i></i><i></i><i class="active"></i><i></i></div></div>
+          <h2>Jaipur</h2>
+          <p class="tagline">Dos noches en la Ciudad Rosa</p>
+          <p class="destination-intro">Después de Delhi y Agra, Jaipur se siente distinta: fachadas rosadas, fuertes sobre las colinas y talleres textiles. Reservad dos noches para ver Amber y el centro histórico sin pasar el día corriendo.</p>
+          <div class="meta-row"><span>2 noches</span><span>Ritmo activo</span><span>5 o 6 h desde Delhi</span></div>
+          <h3 class="plan-title">Cómo repartir dos días</h3>
+          <ol class="timeline">
+            <li><time>DÍA 1</time><strong>Centro histórico</strong><p>City Palace, Jantar Mantar y la fachada de Hawa Mahal.</p></li>
+            <li><time>16:00</time><strong>Mercado guiado</strong><p>Pedid al guía que evite tiendas con comisión y os deje tiempo para mirar.</p></li>
+            <li><time>DÍA 2</time><strong>Amber Palace</strong><p>Id por la mañana y subid en vehículo o a pie.</p></li>
+            <li><time>15:00</time><strong>Taller artesanal</strong><p>Probad block printing o cerámica azul. Si estáis cansados, dejad la tarde libre.</p></li>
+          </ol>
+          <div class="note-grid">
+            <div class="note-card"><h3>Si tenéis más tiempo</h3><p>Jal Mahal, Gaitore y Anokhi Museum son buenas paradas. Dejad Nahargarh para el atardecer.</p></div>
+            <div class="note-card important"><h3>Nota clave</h3><p>No recomendamos los paseos en elefante. Si compráis joyas o piedras, pedid factura y certificado.</p></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="destination reverse reveal" id="rishikesh" data-accent="teal">
+        <div class="destination-visual rishikesh">
+          <img src="assets/rishikesh.webp" alt="Rishikesh, el Ganges, Ram Jhula y las montañas al atardecer">
+          <div class="visual-label"><span class="index">04 / 04 · RISHIKESH</span><strong>Rishikesh</strong><em>Unos días junto al Ganges</em></div>
+        </div>
+        <div class="destination-copy" data-number="04">
+          <div class="chapter-row"><p class="eyebrow">Ciudad 04 / 04</p><div class="chapter-progress" aria-hidden="true"><i></i><i></i><i></i><i class="active"></i></div></div>
+          <h2>Rishikesh</h2>
+          <p class="tagline">Unos días junto al Ganges</p>
+          <p class="destination-intro">Elegid Rishikesh si después de la boda os apetece bajar el ritmo. Hay yoga, ashrams y paseos junto al Ganges, aunque las zonas de los puentes y los ghats pueden estar bastante concurridas.</p>
+          <div class="meta-row"><span>2 o 3 noches</span><span>Ritmo tranquilo</span><span>5 o 6 h desde Delhi</span></div>
+          <h3 class="plan-title">Cómo repartir dos días</h3>
+          <ol class="timeline">
+            <li><time>DÍA 1</time><strong>Llegada y paseo</strong><p>Instalaos y reconoced la zona con un paseo corto antes de que oscurezca.</p></li>
+            <li><time>18:00</time><strong>Ganga Aarti</strong><p>Llegad con tiempo. Un guía puede explicar la ceremonia sin interrumpirla.</p></li>
+            <li><time>DÍA 2</time><strong>Yoga suave</strong><p>Reservad una clase para principiantes y avisad de lesiones o limitaciones.</p></li>
+            <li><time>11:00</time><strong>Ashrams y ghats</strong><p>Elegid Beatles Ashram o caminad entre Ram Jhula y los ghats.</p></li>
+          </ol>
+          <div class="note-grid">
+            <div class="note-card"><h3>Si tenéis más tiempo</h3><p>Podéis añadir Rajaji National Park, un tratamiento en un hotel de confianza o rafting con un operador autorizado.</p></div>
+            <div class="note-card important"><h3>Nota clave</h3><p>No entréis en el río fuera de zonas vigiladas. Volved a Delhi al menos un día antes del vuelo.</p></div>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <section class="calendar" id="calendario">
+      <div class="section-shell">
+        <header class="section-head reveal">
+          <p class="eyebrow light">Después de la boda</p>
+          <h2 class="display">Dos rutas que encajan<br>bien con las fechas</h2>
+          <p class="lede">Las fechas parten de la boda del 1 y 2 de diciembre de 2026. Como el Taj Mahal cierra los viernes, el día 4 está reservado para Delhi.</p>
+        </header>
+        <div class="calendar-grid">
+          <article class="itinerary reveal">
+            <div class="itinerary-head"><h3>Delhi + Agra</h3><span>5 días</span></div>
+            <ol class="day-list">
+              <li><time>JUE 3</time><p><strong>Recuperación:</strong> brunch y, si os apetece, India Gate o Lodhi Garden.</p></li>
+              <li><time>VIE 4</time><p><strong>Delhi esencial:</strong> Humayun y sus jardines. Dejad Old Delhi para quien tenga energía.</p></li>
+              <li><time>SÁB 5</time><p><strong>Hacia Agra:</strong> salid de día; visitad Agra Fort y el mirador al atardecer.</p></li>
+              <li><time>DOM 6</time><p><strong>Taj Mahal con guía:</strong> quedad con un guía acreditado antes de la apertura y regresad a Delhi después de desayunar.</p></li>
+              <li><time>LUN 7</time><p><strong>Margen / vuelo:</strong> ya estaréis en Delhi desde la noche anterior.</p></li>
+            </ol>
+          </article>
+          <article class="itinerary featured reveal">
+            <div class="itinerary-head"><h3>Triángulo Dorado</h3><span>7 días</span></div>
+            <ol class="day-list">
+              <li><time>JUE 3</time><p><strong>Recuperación:</strong> descansad. El paseo de la tarde es opcional.</p></li>
+              <li><time>VIE 4</time><p><strong>Delhi:</strong> elegid patrimonio o barrios contemporáneos según el ritmo del grupo.</p></li>
+              <li><time>SÁB 5</time><p><strong>Agra:</strong> salid de día, visitad Agra Fort y dormid en la ciudad.</p></li>
+              <li><time>DOM 6</time><p><strong>Taj + Jaipur:</strong> visitad el Taj temprano con un guía acreditado y continuad hacia Jaipur.</p></li>
+              <li><time>LUN 7</time><p><strong>Jaipur:</strong> centro histórico y mercados con guía.</p></li>
+              <li><time>MAR 8</time><p><strong>Amber + Delhi:</strong> visitad Amber por la mañana y regresad a Delhi.</p></li>
+              <li><time>MIÉ 9</time><p><strong>Vuelo:</strong> salid desde Delhi, sin conexiones por carretera ese día.</p></li>
+            </ol>
+          </article>
+        </div>
+        <div class="alternative reveal"><strong>Alternativa:</strong> si os apetece más calma, cambiad Agra y Jaipur por 2 o 3 noches en Rishikesh.</div>
+      </div>
+    </section>
+
+    <section class="section-space" id="practico">
+      <div class="section-shell">
+        <header class="section-head reveal">
+          <p class="eyebrow">Viajar en diciembre</p>
+          <h2 class="display">Detalles útiles<br>para esos días</h2>
+          <p class="lede">El frío de la mañana, la niebla y la calidad del aire pueden cambiar el plan. Llevad margen y revisad las condiciones cada día.</p>
+        </header>
+        <div class="practical-grid">
+          <article class="practical-card reveal" style="--accent:var(--saffron)"><h3>Frío y aire</h3><p>Llevad prendas por capas. Una KN95 o N95 viene bien cuando empeora la calidad del aire.</p></article>
+          <article class="practical-card reveal" style="--accent:var(--teal)"><h3>Agua y comida</h3><p>Bebed agua con el precinto intacto o agua filtrada, y elegid comida recién hecha. Evitad el hielo de origen dudoso.</p></article>
+          <article class="practical-card reveal" style="--accent:var(--rose)"><h3>Transporte</h3><p>Reservad un vehículo con cinturones y un conductor profesional. La niebla puede alargar los trayectos.</p></article>
+          <article class="practical-card reveal" style="--accent:var(--marigold)"><h3>Visitas religiosas</h3><p>Cubrid hombros y rodillas. Quitad los zapatos cuando os lo indiquen y cubrid la cabeza en los gurudwaras.</p></article>
+          <article class="practical-card reveal" style="--accent:var(--river)"><h3>Salud</h3><p>Contratad seguro, llevad la medicación habitual en el equipaje de mano y avisad al coordinador de cualquier alergia.</p></article>
+          <article class="practical-card reveal" style="--accent:var(--saffron)"><h3>Compras</h3><p>Rechazad las paradas comerciales no anunciadas. Acordad el precio antes de subir a un rickshaw por vuestra cuenta.</p></article>
+        </div>
+        <div class="emergency reveal"><strong>112</strong><p>Emergencias · Asistencia turística en español: 1363 / 1800-11-1363</p></div>
+      </div>
+    </section>
+
+    <section class="booking section-space" id="reservas">
+      <div class="section-shell">
+        <header class="section-head reveal">
+          <p class="eyebrow">Horarios y entradas</p>
+          <h2 class="display">Comprobadlo antes<br>de reservar</h2>
+          <p class="lede">Los horarios y las tarifas cambian. Antes de pagar, revisad la información en la web oficial de cada destino.</p>
+        </header>
+        <div class="link-grid">
+          <a class="official-link reveal" href="https://www.delhitourism.gov.in/" target="_blank" rel="noopener"><i style="--dot:var(--teal)"></i><span><strong>Delhi Tourism</strong><small>delhitourism.gov.in ↗</small></span></a>
+          <a class="official-link reveal" href="https://tajmahal.gov.in/" target="_blank" rel="noopener"><i style="--dot:var(--saffron)"></i><span><strong>Taj Mahal oficial</strong><small>tajmahal.gov.in ↗</small></span></a>
+          <a class="official-link reveal" href="https://www.tourism.rajasthan.gov.in/jaipur.html" target="_blank" rel="noopener"><i style="--dot:var(--rose)"></i><span><strong>Rajasthan Tourism</strong><small>tourism.rajasthan.gov.in ↗</small></span></a>
+          <a class="official-link reveal" href="https://www.uttarakhandtourism.gov.in/destination/rishikesh" target="_blank" rel="noopener"><i style="--dot:var(--river)"></i><span><strong>Uttarakhand Tourism</strong><small>uttarakhandtourism.gov.in ↗</small></span></a>
+        </div>
+        <div class="packing reveal">
+          <h3>Qué conviene llevar</h3>
+          <ul class="chip-list">
+            <li>Chaqueta ligera</li><li>Calzado cómodo</li><li>Pañuelo</li><li>Medicación</li><li>Protector solar</li><li>Repelente</li><li>Mascarillas</li><li>Adaptador universal</li><li>Copia offline del hotel</li>
+          </ul>
+        </div>
+        <details class="credits reveal">
+          <summary>Créditos visuales</summary>
+          <p>Arte editorial original creado para esta guía a partir de referencias de estilo aportadas por el usuario y fotografías reutilizables de Komal Sambhudas, Dinesh Kumar Dholiya, Smitapp, Gunjan Pandey, Diego Delso, Prijec31 y Rakami Art Studio. Adaptaciones bajo CC BY-SA 4.0 cuando corresponde.</p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer class="closing">
+    <strong>Elegid la ruta que os apetezca.</strong>
+    <p>No intentéis encajarlo todo. Dormid en Delhi la noche anterior al vuelo y disfrutad del resto con calma.<br>Nos vemos en Delhi.</p>
+    <small>Norte de India · Guía para nuestros invitados · Diciembre 2026</small>
+  </footer>
+
+  <script>
+    const progress = document.querySelector('.reading-progress');
+    const updateProgress = () => {
+      const max = document.documentElement.scrollHeight - innerHeight;
+      progress.style.width = `${max > 0 ? (scrollY / max) * 100 : 0}%`;
+    };
+    addEventListener('scroll', updateProgress, { passive: true });
+    updateProgress();
+
+  </script>
+</body>
+</html>
