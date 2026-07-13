@@ -45,6 +45,18 @@
     button, a { -webkit-tap-highlight-color: transparent; }
     :focus-visible { outline: 3px solid var(--marigold); outline-offset: 4px; }
 
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
     .skip-link {
       position: fixed;
       left: 18px;
@@ -170,6 +182,54 @@
       margin-bottom: 30px;
     }
     .hero-topline .eyebrow { margin: 0; }
+    .hero-utilities {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+    .language-switcher {
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      padding: 3px;
+      border: 1px solid var(--stone);
+      border-radius: 999px;
+      background: var(--white);
+      color: var(--indigo);
+    }
+    .language-switcher button {
+      min-width: 40px;
+      min-height: 34px;
+      padding: 6px 10px;
+      border: 0;
+      border-radius: 999px;
+      background: transparent;
+      color: inherit;
+      cursor: pointer;
+      font: 700 .72rem/1 var(--sans);
+      letter-spacing: .08em;
+    }
+    .language-switcher button:hover { background: var(--ivory); }
+    .language-switcher button[aria-pressed="true"] {
+      background: var(--indigo);
+      color: var(--white);
+    }
+    .language-switcher > span {
+      color: currentColor;
+      font-size: .66rem;
+      opacity: .45;
+    }
+    .language-switcher--hero {
+      border-color: rgba(255, 255, 255, .26);
+      background: rgba(255, 255, 255, .08);
+      color: var(--white);
+    }
+    .language-switcher--hero button:hover { background: rgba(255, 255, 255, .12); }
+    .language-switcher--hero button[aria-pressed="true"] {
+      background: var(--marigold);
+      color: var(--indigo);
+    }
     .date-chip {
       flex: none;
       padding: 8px 12px;
@@ -185,7 +245,7 @@
       font-family: var(--display);
       font-size: clamp(4.15rem, 10vw, 7.7rem);
       font-weight: 600;
-      letter-spacing: -.055em;
+      letter-spacing: -.04em;
       line-height: .82;
     }
     .hero h1 span { display: block; }
@@ -257,6 +317,12 @@
       text-decoration: none;
     }
     .site-nav a:hover { background: var(--ivory); }
+    .nav-language {
+      margin-left: 6px;
+      padding-left: 8px;
+      border-left: 1px solid var(--stone);
+    }
+    .site-nav .language-switcher { border-color: transparent; background: var(--ivory); }
 
     .routes { padding-top: 150px; }
     .route-grid {
@@ -462,6 +528,13 @@
     @media (max-width: 900px) {
       .site-nav { overflow-x: auto; border-radius: 18px; }
       .site-nav ul { justify-content: flex-start; min-width: max-content; }
+      .nav-language {
+        position: sticky;
+        right: 0;
+        padding-right: 2px;
+        background: rgba(255, 253, 248, .96);
+        box-shadow: -12px 0 18px rgba(255, 253, 248, .96);
+      }
       .route-card { grid-template-columns: 120px 1fr; }
       .destination, .destination.reverse { grid-template-columns: 1fr; }
       .destination.reverse .destination-visual { order: 0; }
@@ -477,7 +550,8 @@
       .section-space { padding-block: 74px; }
       .hero-inner { align-items: end; padding: 54px 15px 32px; }
       .hero-panel { padding: 28px 22px 30px; text-align: left; }
-      .hero-topline { margin-bottom: 22px; }
+      .hero-topline { align-items: flex-start; flex-direction: column; gap: 14px; margin-bottom: 22px; }
+      .hero-utilities { width: 100%; justify-content: space-between; }
       .hero h1 { font-size: clamp(3.75rem, 18vw, 5.4rem); }
       .hero-copy { margin-top: 20px; }
       .hero-actions { justify-content: flex-start; }
@@ -508,7 +582,7 @@
     }
 
     @media print {
-      .reading-progress, .site-nav, .hero-actions { display: none !important; }
+      .reading-progress, .site-nav, .hero-actions, .language-switcher { display: none !important; }
       body { background: white; }
       .hero { min-height: 100vh; break-after: page; }
       .routes { padding-top: 70px; }
@@ -532,7 +606,14 @@
       <div class="hero-panel">
         <div class="hero-topline">
           <p class="eyebrow light">Después de la boda</p>
-          <span class="date-chip">DIC 2026</span>
+          <div class="hero-utilities">
+            <div class="language-switcher language-switcher--hero" role="group" aria-label="Language / Idioma">
+              <button type="button" data-language-option="en" aria-pressed="false" aria-label="View in English">EN</button>
+              <span aria-hidden="true">/</span>
+              <button type="button" data-language-option="es" aria-pressed="true" aria-label="Ver en español">ES</button>
+            </div>
+            <span class="date-chip">DIC 2026</span>
+          </div>
         </div>
         <h1><span>Norte</span><span>de India</span></h1>
         <p class="hero-copy">Hemos reunido cuatro formas de seguir el viaje después de la boda. Elegid la que mejor encaje con vuestros días y dejad tiempo para descansar.</p>
@@ -553,8 +634,17 @@
       <li><a href="#rishikesh">Rishikesh</a></li>
       <li><a href="#calendario">Calendario</a></li>
       <li><a href="#practico">Consejos</a></li>
+      <li class="nav-language">
+        <div class="language-switcher" role="group" aria-label="Language / Idioma">
+          <button type="button" data-language-option="en" aria-pressed="false" aria-label="View in English">EN</button>
+          <span aria-hidden="true">/</span>
+          <button type="button" data-language-option="es" aria-pressed="true" aria-label="Ver en español">ES</button>
+        </div>
+      </li>
     </ul>
   </nav>
+
+  <p class="sr-only" id="language-status" aria-live="polite"></p>
 
   <main id="contenido">
     <section class="routes section-space" id="rutas">
@@ -796,6 +886,252 @@
   </footer>
 
   <script>
+    const english = new Map([
+      [`Saltar al contenido`, `Skip to content`],
+      [`Después de la boda`, `After the wedding`],
+      [`DIC 2026`, `DEC 2026`],
+      [`Norte`, `North`],
+      [`de India`, `India`],
+      [`Hemos reunido cuatro formas de seguir el viaje después de la boda. Elegid la que mejor encaje con vuestros días y dejad tiempo para descansar.`, `We’ve put together four ways to continue your travels after the wedding. Choose the one that best fits your schedule, and leave time to rest.`],
+      [`Ver las rutas ↓`, `Explore the routes ↓`],
+      [`Rutas`, `Routes`],
+      [`Calendario`, `Itineraries`],
+      [`Consejos`, `Travel tips`],
+      [`Elegid vuestro ritmo`, `Choose your pace`],
+      [`Cuatro maneras`, `Four ways`],
+      [`de seguir el viaje`, `to continue your journey`],
+      [`Mirad primero cuántos días tenéis antes del vuelo. En cualquier ruta, os recomendamos dormir la última noche en Delhi.`, `First, check how many days you have before your flight. Whichever route you choose, we recommend spending your final night in Delhi.`],
+      [`Delhi esencial`, `Delhi essentials`],
+      [`Humayun · Old Delhi · India Gate · Qutub. Todo desde el mismo hotel.`, `Humayun’s Tomb · Old Delhi · India Gate · Qutub Minar. All from the same hotel.`],
+      [`2 o 3 días`, `2–3 days`],
+      [`Con pocos días, una noche basta para ver el Taj sin pasar el viaje en carretera.`, `If you only have a few days, one night is enough to see the Taj without spending the whole trip on the road.`],
+      [`3 o 4 días`, `3–4 days`],
+      [`La más completa`, `Most comprehensive`],
+      [`Triángulo Dorado`, `Golden Triangle`],
+      [`La ruta clásica para una primera visita: Delhi · Agra · Jaipur · Delhi.`, `The classic first-time itinerary: Delhi · Agra · Jaipur · Delhi.`],
+      [`5 a 7 días`, `5–7 days`],
+      [`Para bajar el ritmo junto al Ganges, con yoga y tiempo libre.`, `Slow down beside the Ganges, with yoga and plenty of free time.`],
+      [`4 a 6 días`, `4–6 days`],
+      [`Regla de oro`, `Golden rule`],
+      [`Dormid en Delhi la noche anterior al vuelo internacional.`, `Stay in Delhi the night before your international flight.`],
+      [`Empezad con calma`, `Ease into the journey`],
+      [`Ciudad 01 / 04`, `City 01 / 04`],
+      [`En pocos kilómetros conviven tumbas mogoles, mercados y los grandes ejes de la capital. Empezad por los jardines y dejad Old Delhi para cuando hayáis descansado; con guía se disfruta mucho más.`, `Within just a few kilometres, you’ll find Mughal tombs, markets, and the capital’s grand avenues. Start with the gardens and save Old Delhi until you’re rested; it’s much easier to enjoy with a guide.`],
+      [`Ritmo flexible`, `Flexible pace`],
+      [`Trayectos locales`, `Local travel`],
+      [`Cómo repartir el tiempo`, `How to plan your time`],
+      [`Humayun + Sunder Nursery`, `Humayun’s Tomb + Sunder Nursery`],
+      [`La tumba de Humayun y sus jardines son una primera visita tranquila.`, `Humayun’s Tomb and nearby Sunder Nursery make for a relaxed first stop.`],
+      [`Lodhi + almuerzo`, `Lodhi + lunch`],
+      [`Dad un paseo corto y almorzad en un restaurante de confianza.`, `Take a short walk, then have lunch at a trusted restaurant.`],
+      [`Llegad con luz de tarde y recorred Kartavya Path.`, `Arrive in the late-afternoon light and walk along Kartavya Path.`],
+      [`DÍA 1`, `DAY 1`],
+      [`DÍA 2`, `DAY 2`],
+      [`Old Delhi con guía`, `Old Delhi with a guide`],
+      [`Jama Masjid, un paseo en rickshaw, bazares y una visita al gurudwara.`, `Jama Masjid, a rickshaw ride, the bazaars, and a visit to a gurdwara.`],
+      [`Si tenéis más tiempo`, `If you have more time`],
+      [`Añadid Qutub Minar y Mehrauli, Dilli Haat o Gurudwara Bangla Sahib al atardecer.`, `Add Qutub Minar and Mehrauli, Dilli Haat, or Gurudwara Bangla Sahib at sunset.`],
+      [`Nota clave`, `Key advice`],
+      [`Para Old Delhi, reservad un guía y acordad el punto de encuentro. Conviene que el vehículo espere al final.`, `For Old Delhi, book a guide and agree on a meeting point. It’s best to have your driver wait at the final stop.`],
+      [`El Taj sin prisas`, `The Taj at an easy pace`],
+      [`Ciudad 02 / 04`, `City 02 / 04`],
+      [`Dormid una noche en Agra. Así podéis visitar el Taj temprano, ver Agra Fort y evitar ocho horas de carretera en un solo día.`, `Stay one night in Agra. This gives you time to visit the Taj early, see Agra Fort, and avoid spending eight hours on the road in a single day.`],
+      [`1 noche`, `1 night`],
+      [`Ritmo moderado`, `Moderate pace`],
+      [`≈ 4 h desde Delhi`, `≈ 4 hrs from Delhi`],
+      [`Un plan cómodo`, `A comfortable itinerary`],
+      [`Salid después del desayuno`, `Leave after breakfast`],
+      [`En diciembre, es más cómodo conducir de día que antes del amanecer.`, `In December, driving during daylight is more comfortable than setting off before dawn.`],
+      [`Sus patios y salas ayudan a entender la vida de la corte mogola.`, `Its courtyards and halls offer a glimpse into life at the Mughal court.`],
+      [`Id si el cielo está despejado; la vista depende mucho de la bruma.`, `Go if the sky is clear; visibility varies greatly with the haze.`],
+      [`Taj Mahal con guía acreditado`, `Taj Mahal with a licensed guide`],
+      [`Quedad con el guía antes de la apertura, entrad a primera hora y volved al hotel a desayunar.`, `Meet your guide before opening time, enter as soon as it opens, then return to the hotel for breakfast.`],
+      [`Añadid Itmad-ud-Daulah o Fatehpur Sikri. Para comer, elegid un restaurante de confianza con cocina mogola.`, `Add Itmad-ud-Daulah or Fatehpur Sikri. For a meal, choose a reputable restaurant serving Mughlai cuisine.`],
+      [`Antes de ir`, `Before you go`],
+      [`El Taj Mahal cierra los viernes. Reservad el 4 de diciembre de 2026 para Delhi.`, `The Taj Mahal is closed on Fridays. Plan to spend December 4, 2026, in Delhi.`],
+      [`No es obligatorio contratar guía para entrar, pero para nuestros invitados internacionales consideramos esencial reservar uno aprobado por el Gobierno. Pedid que muestre su acreditación con foto.`, `A guide is not required for entry, but we consider booking a government-approved one essential for our international guests. Ask to see their photo ID and accreditation.`],
+      [`Buscad y reservad un guía verificado en DESH, el portal del Ministerio de Turismo ↗`, `Find and book a verified guide through DESH, the Ministry of Tourism portal ↗`],
+      [`Dos noches en la Ciudad Rosa`, `Two nights in the Pink City`],
+      [`Ciudad 03 / 04`, `City 03 / 04`],
+      [`Después de Delhi y Agra, Jaipur se siente distinta: fachadas rosadas, fuertes sobre las colinas y talleres textiles. Reservad dos noches para ver Amber y el centro histórico sin pasar el día corriendo.`, `After Delhi and Agra, Jaipur feels completely different: pink façades, hilltop forts, and textile workshops. Allow two nights to see Amber and the historic centre without rushing from place to place.`],
+      [`2 noches`, `2 nights`],
+      [`Ritmo activo`, `Active pace`],
+      [`5 o 6 h desde Delhi`, `5–6 hrs from Delhi`],
+      [`Cómo repartir dos días`, `How to spend two days`],
+      [`Centro histórico`, `Historic centre`],
+      [`City Palace, Jantar Mantar y la fachada de Hawa Mahal.`, `City Palace, Jantar Mantar, and the façade of Hawa Mahal.`],
+      [`Mercado guiado`, `Guided market visit`],
+      [`Pedid al guía que evite tiendas con comisión y os deje tiempo para mirar.`, `Ask your guide to avoid commission-based shops and give you time to browse.`],
+      [`Id por la mañana y subid en vehículo o a pie.`, `Go in the morning and make your way up by vehicle or on foot.`],
+      [`Taller artesanal`, `Craft workshop`],
+      [`Probad block printing o cerámica azul. Si estáis cansados, dejad la tarde libre.`, `Try block printing or blue pottery. If you are tired, keep the afternoon free.`],
+      [`Jal Mahal, Gaitore y Anokhi Museum son buenas paradas. Dejad Nahargarh para el atardecer.`, `Jal Mahal, Gaitore, and the Anokhi Museum are worthwhile stops. Save Nahargarh for sunset.`],
+      [`No recomendamos los paseos en elefante. Si compráis joyas o piedras, pedid factura y certificado.`, `We do not recommend elephant rides. If you buy jewellery or gemstones, ask for an invoice and certificate.`],
+      [`Unos días junto al Ganges`, `A few days by the Ganges`],
+      [`Ciudad 04 / 04`, `City 04 / 04`],
+      [`Elegid Rishikesh si después de la boda os apetece bajar el ritmo. Hay yoga, ashrams y paseos junto al Ganges, aunque las zonas de los puentes y los ghats pueden estar bastante concurridas.`, `Choose Rishikesh if you would like to slow down after the wedding. It offers yoga, ashrams, and riverside walks, although the bridge areas and ghats can get quite busy.`],
+      [`2 o 3 noches`, `2–3 nights`],
+      [`Ritmo tranquilo`, `Relaxed pace`],
+      [`Llegada y paseo`, `Arrival and walk`],
+      [`Instalaos y reconoced la zona con un paseo corto antes de que oscurezca.`, `Settle in and get your bearings with a short walk before dark.`],
+      [`Llegad con tiempo. Un guía puede explicar la ceremonia sin interrumpirla.`, `Arrive early. A guide can explain the ceremony without disrupting it.`],
+      [`Yoga suave`, `Gentle yoga`],
+      [`Reservad una clase para principiantes y avisad de lesiones o limitaciones.`, `Book a beginner class and mention any injuries or physical limitations.`],
+      [`Ashrams y ghats`, `Ashrams and ghats`],
+      [`Elegid Beatles Ashram o caminad entre Ram Jhula y los ghats.`, `Choose the Beatles Ashram, or walk between Ram Jhula and the ghats.`],
+      [`Podéis añadir Rajaji National Park, un tratamiento en un hotel de confianza o rafting con un operador autorizado.`, `You could add Rajaji National Park, a spa treatment at a reputable hotel, or rafting with a licensed operator.`],
+      [`No entréis en el río fuera de zonas vigiladas. Volved a Delhi al menos un día antes del vuelo.`, `Do not enter the river outside supervised areas. Return to Delhi at least one day before your flight.`],
+      [`Dos rutas que encajan`, `Two routes that fit`],
+      [`bien con las fechas`, `the dates`],
+      [`Las fechas parten de la boda del 1 y 2 de diciembre de 2026. Como el Taj Mahal cierra los viernes, el día 4 está reservado para Delhi.`, `These itineraries begin after the wedding on December 1–2, 2026. Since the Taj Mahal is closed on Fridays, December 4 is reserved for Delhi.`],
+      [`5 días`, `5 days`],
+      [`7 días`, `7 days`],
+      [`JUE 3`, `THU 3`],
+      [`VIE 4`, `FRI 4`],
+      [`SÁB 5`, `SAT 5`],
+      [`DOM 6`, `SUN 6`],
+      [`LUN 7`, `MON 7`],
+      [`MAR 8`, `TUE 8`],
+      [`MIÉ 9`, `WED 9`],
+      [`Recuperación:`, `Take it easy:`],
+      [`brunch y, si os apetece, India Gate o Lodhi Garden.`, `Brunch, then India Gate or Lodhi Garden if you feel like it.`],
+      [`Delhi esencial:`, `Delhi highlights:`],
+      [`Humayun y sus jardines. Dejad Old Delhi para quien tenga energía.`, `Visit Humayun’s Tomb and its gardens. Save Old Delhi for anyone who still has the energy.`],
+      [`Hacia Agra:`, `Travel to Agra:`],
+      [`salid de día; visitad Agra Fort y el mirador al atardecer.`, `Travel by daylight, visit Agra Fort, and stop at the viewpoint for sunset.`],
+      [`Taj Mahal con guía:`, `Taj Mahal with a guide:`],
+      [`quedad con un guía acreditado antes de la apertura y regresad a Delhi después de desayunar.`, `Meet an accredited guide before opening time, then return to Delhi after breakfast.`],
+      [`Margen / vuelo:`, `Buffer day / flight:`],
+      [`ya estaréis en Delhi desde la noche anterior.`, `You’ll already be in Delhi, having returned the previous evening.`],
+      [`descansad. El paseo de la tarde es opcional.`, `Rest. The afternoon walk is optional.`],
+      [`elegid patrimonio o barrios contemporáneos según el ritmo del grupo.`, `Choose between heritage sites and contemporary neighbourhoods, depending on the group’s energy.`],
+      [`salid de día, visitad Agra Fort y dormid en la ciudad.`, `Travel by daylight, visit Agra Fort, and spend the night in the city.`],
+      [`visitad el Taj temprano con un guía acreditado y continuad hacia Jaipur.`, `Visit the Taj early with an accredited guide, then continue to Jaipur.`],
+      [`centro histórico y mercados con guía.`, `Explore the historic centre and markets with a guide.`],
+      [`visitad Amber por la mañana y regresad a Delhi.`, `Visit Amber in the morning, then return to Delhi.`],
+      [`Vuelo:`, `Flight:`],
+      [`salid desde Delhi, sin conexiones por carretera ese día.`, `Depart from Delhi and avoid any same-day road transfers.`],
+      [`Alternativa:`, `Alternative:`],
+      [`si os apetece más calma, cambiad Agra y Jaipur por 2 o 3 noches en Rishikesh.`, `For a slower pace, replace Agra and Jaipur with two or three nights in Rishikesh.`],
+      [`Viajar en diciembre`, `Travelling in December`],
+      [`Detalles útiles`, `Useful things`],
+      [`para esos días`, `to know`],
+      [`El frío de la mañana, la niebla y la calidad del aire pueden cambiar el plan. Llevad margen y revisad las condiciones cada día.`, `Cold mornings, fog, and air quality can affect your plans. Leave extra time and check conditions each day.`],
+      [`Frío y aire`, `Cold weather and air quality`],
+      [`Llevad prendas por capas. Una KN95 o N95 viene bien cuando empeora la calidad del aire.`, `Dress in layers. A KN95 or N95 mask is useful when air quality is poor.`],
+      [`Agua y comida`, `Water and food`],
+      [`Bebed agua con el precinto intacto o agua filtrada, y elegid comida recién hecha. Evitad el hielo de origen dudoso.`, `Drink factory-sealed bottled water or filtered water, and choose freshly prepared food. Avoid ice if you are unsure of its source.`],
+      [`Transporte`, `Transport`],
+      [`Reservad un vehículo con cinturones y un conductor profesional. La niebla puede alargar los trayectos.`, `Book a vehicle with seat belts and a professional driver. Fog can make journeys longer.`],
+      [`Visitas religiosas`, `Religious sites`],
+      [`Cubrid hombros y rodillas. Quitad los zapatos cuando os lo indiquen y cubrid la cabeza en los gurudwaras.`, `Cover your shoulders and knees. Remove your shoes when asked and cover your head at gurdwaras.`],
+      [`Salud`, `Health`],
+      [`Contratad seguro, llevad la medicación habitual en el equipaje de mano y avisad al coordinador de cualquier alergia.`, `Get travel insurance, keep your regular medication in your hand luggage, and tell the coordinator about any allergies.`],
+      [`Compras`, `Shopping`],
+      [`Rechazad las paradas comerciales no anunciadas. Acordad el precio antes de subir a un rickshaw por vuestra cuenta.`, `Decline unplanned shopping stops. Agree on the fare before taking a rickshaw on your own.`],
+      [`Emergencias · Asistencia turística en español: 1363 / 1800-11-1363`, `Emergencies · Tourist helpline with Spanish-language assistance: 1363 / 1800-11-1363`],
+      [`Horarios y entradas`, `Opening times and tickets`],
+      [`Comprobadlo antes`, `Check before`],
+      [`de reservar`, `you book`],
+      [`Los horarios y las tarifas cambian. Antes de pagar, revisad la información en la web oficial de cada destino.`, `Opening times and prices can change. Check each destination’s official website before paying.`],
+      [`Taj Mahal oficial`, `Official Taj Mahal website`],
+      [`Qué conviene llevar`, `What to bring`],
+      [`Chaqueta ligera`, `Light jacket`],
+      [`Calzado cómodo`, `Comfortable shoes`],
+      [`Pañuelo`, `Scarf or shawl`],
+      [`Medicación`, `Medication`],
+      [`Protector solar`, `Sunscreen`],
+      [`Repelente`, `Insect repellent`],
+      [`Mascarillas`, `Face masks`],
+      [`Adaptador universal`, `Universal travel adapter`],
+      [`Copia offline del hotel`, `Offline copy of your hotel details`],
+      [`Créditos visuales`, `Visual credits`],
+      [`Arte editorial original creado para esta guía a partir de referencias de estilo aportadas por el usuario y fotografías reutilizables de Komal Sambhudas, Dinesh Kumar Dholiya, Smitapp, Gunjan Pandey, Diego Delso, Prijec31 y Rakami Art Studio. Adaptaciones bajo CC BY-SA 4.0 cuando corresponde.`, `Original editorial artwork created for this guide using style references provided by the user and reusable photographs by Komal Sambhudas, Dinesh Kumar Dholiya, Smitapp, Gunjan Pandey, Diego Delso, Prijec31, and Rakami Art Studio. Adapted under CC BY-SA 4.0 where applicable.`],
+      [`Elegid la ruta que os apetezca.`, `Choose the route that suits you.`],
+      [`No intentéis encajarlo todo. Dormid en Delhi la noche anterior al vuelo y disfrutad del resto con calma.`, `Don’t try to fit everything in. Stay in Delhi the night before your flight and enjoy the rest at an easy pace.`],
+      [`Nos vemos en Delhi.`, `See you in Delhi.`],
+      [`Norte de India · Guía para nuestros invitados · Diciembre 2026`, `North India · A guide for our guests · December 2026`]
+    ]);
+
+    const englishAttributes = new Map([
+      [`Navegación de la guía`, `Guide navigation`],
+      [`Delhi ilustrada con India Gate, Qutub Minar y arquitectura mogol`, `Illustration of Delhi featuring India Gate, Qutub Minar, and Mughal architecture`],
+      [`El Taj Mahal en una composición de inspiración patrimonial`, `The Taj Mahal in a heritage-inspired composition`],
+      [`Fachadas rosadas y palacios de Jaipur`, `Pink façades and Jaipur’s palaces`],
+      [`El Ganges y los puentes de Rishikesh al atardecer`, `The Ganges and the bridges of Rishikesh at sunset`],
+      [`Collage artístico de Delhi con India Gate, Qutub Minar y la tumba de Humayun`, `Artistic collage of Delhi featuring India Gate, Qutub Minar, and Humayun’s Tomb`],
+      [`El Taj Mahal enmarcado por motivos arquitectónicos y tonos cálidos`, `The Taj Mahal framed by architectural motifs and warm tones`],
+      [`Hawa Mahal y arquitectura palaciega de Jaipur en tonos rosados`, `Hawa Mahal and Jaipur’s palatial architecture in shades of pink`],
+      [`Rishikesh, el Ganges, Ram Jhula y las montañas al atardecer`, `Rishikesh, the Ganges, Ram Jhula, and the mountains at sunset`]
+    ]);
+
+    const pageCopy = {
+      es: {
+        title: `Norte de India · Guía para nuestros invitados`,
+        description: `Guía postboda para descubrir Delhi, Agra, Jaipur y Rishikesh en diciembre de 2026.`,
+        announcement: `Idioma cambiado a español.`
+      },
+      en: {
+        title: `North India · A guide for our guests`,
+        description: `A post-wedding guide to exploring Delhi, Agra, Jaipur, and Rishikesh in December 2026.`,
+        announcement: `Language changed to English.`
+      }
+    };
+
+    const preserveWhitespace = (source, replacement) => {
+      const start = source.search(/\S/);
+      const end = source.search(/\s*$/);
+      return `${source.slice(0, start)}${replacement}${source.slice(end)}`;
+    };
+
+    const translatedTextNodes = [];
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+    let textNode;
+    while ((textNode = walker.nextNode())) {
+      const parent = textNode.parentElement;
+      if (!parent || parent.closest(`script, style, .language-switcher, [aria-hidden="true"]`)) continue;
+      const source = textNode.nodeValue;
+      const key = source.trim();
+      if (!key || !english.has(key)) continue;
+      translatedTextNodes.push({ node: textNode, es: source, en: preserveWhitespace(source, english.get(key)) });
+    }
+
+    const translatedAttributes = [];
+    document.querySelectorAll(`[alt], [aria-label]`).forEach((element) => {
+      [`alt`, `aria-label`].forEach((attribute) => {
+        const source = element.getAttribute(attribute);
+        if (!source || !englishAttributes.has(source)) return;
+        translatedAttributes.push({ element, attribute, es: source, en: englishAttributes.get(source) });
+      });
+    });
+
+    const languageStatus = document.querySelector(`#language-status`);
+    const languageButtons = document.querySelectorAll(`[data-language-option]`);
+    const description = document.querySelector(`meta[name="description"]`);
+
+    const setLanguage = (requestedLanguage, announce = true) => {
+      const language = requestedLanguage === `es` ? `es` : `en`;
+      translatedTextNodes.forEach((entry) => { entry.node.nodeValue = entry[language]; });
+      translatedAttributes.forEach((entry) => { entry.element.setAttribute(entry.attribute, entry[language]); });
+      document.documentElement.lang = language;
+      document.documentElement.dataset.language = language;
+      document.title = pageCopy[language].title;
+      description.setAttribute(`content`, pageCopy[language].description);
+      languageButtons.forEach((button) => {
+        button.setAttribute(`aria-pressed`, String(button.dataset.languageOption === language));
+      });
+      if (announce) languageStatus.textContent = pageCopy[language].announcement;
+      try { localStorage.setItem(`north-india-guide-language`, language); } catch {}
+    };
+
+    languageButtons.forEach((button) => {
+      button.addEventListener(`click`, () => setLanguage(button.dataset.languageOption));
+    });
+
+    let savedLanguage = `en`;
+    try { savedLanguage = localStorage.getItem(`north-india-guide-language`) || `en`; } catch {}
+    setLanguage(savedLanguage, false);
+
     const progress = document.querySelector('.reading-progress');
     const updateProgress = () => {
       const max = document.documentElement.scrollHeight - innerHeight;
@@ -803,7 +1139,6 @@
     };
     addEventListener('scroll', updateProgress, { passive: true });
     updateProgress();
-
   </script>
 </body>
 </html>
